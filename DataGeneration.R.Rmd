@@ -1,0 +1,62 @@
+---
+title: "DataGeneration.R"
+author: "Sam Gene"
+date: "January 23, 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+####Create a new species vector
+
+```{r}
+Species<-c("Actinonaias ligamentina","Alasmidonta marginata","Cyclonaias pustulosa", "Epioblasma triquetra","Pseudacris triseriata", "Pseudacris crucifer","Lithobates sylvaticus","Anaxyrus americanus","Anaxyrus fowleri","Lithobates pipiens");Species
+```
+
+####Create a vector of limb widths
+
+```{r}
+Limb.Width<-rnorm(10,mean=10,sd=10);Limb.Width
+```
+
+####Change all to positive values
+```{r}
+Limb.Width<-abs(Limb.Width);Limb.Width
+```
+
+####Create a reandom vector of units for limb width
+```{r}
+unitsW<-c("cm","mm")
+unitsW<-sample(unitsW,10,replace=T,prob=c(0.5,0.5))
+unitsW
+```
+
+#### Creat a vector for Limb.Length
+```{r}
+Limb.Length<-rnorm(10,mean=100,sd=100);Limb.Length
+```
+
+####Change all to positive values
+```{r}
+Limb.Length<-abs(Limb.Length);Limb.Length
+```
+
+####Create a reandom vector of units for limb length
+```{r}
+unitsL<-c("cm","mm")
+unitsL<-sample(unitsL,10,replace=T,prob=c(0.5,0.5))
+unitsL
+```
+
+####Combine all vectors into a data frame
+```{r}
+MyData=data.frame(Species,Limb.Width,unitsW,Limb.Length,unitsL)
+MyData
+```
+####Create csv for Part 2 of assignment
+```{r}
+write.csv(MyData,"Data\\measurments.csv", row.names = FALSE)
+```
+

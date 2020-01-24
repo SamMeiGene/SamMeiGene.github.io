@@ -55,7 +55,7 @@ unitsL
 MyData=data.frame(Species,Limb.Width,unitsW,Limb.Length,unitsL)
 MyData
 ```
-####Create csv for Part 2 of assignment
+####Create csv for Part 2 of assignment for week 3
 ```{r}
 write.csv(MyData,"Data\\measurments.csv", row.names = FALSE)
 ``` 

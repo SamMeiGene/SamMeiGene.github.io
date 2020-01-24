@@ -58,5 +58,5 @@ MyData
 ####Create csv for Part 2 of assignment
 ```{r}
 write.csv(MyData,"Data\\measurments.csv", row.names = FALSE)
-```
+``` 
 

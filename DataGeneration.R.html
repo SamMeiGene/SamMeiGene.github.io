@@ -197,59 +197,59 @@ summary {
 <div id="create-a-vector-of-limb-widths" class="section level4">
 <h4>Create a vector of limb widths</h4>
 <pre class="r"><code>Limb.Width&lt;-rnorm(10,mean=10,sd=10);Limb.Width</code></pre>
-<pre><code>##  [1]  1.435623 12.668879 15.327728 13.579842 -9.632099 13.807190 26.066152
-##  [8] 12.025408  5.998468  7.090361</code></pre>
+<pre><code>##  [1] -19.636665  -1.339951   9.601492   3.900619   8.511429  11.598462
+##  [7]   2.757632  15.959411  16.707562  20.585995</code></pre>
 </div>
 <div id="change-all-to-positive-values" class="section level4">
 <h4>Change all to positive values</h4>
 <pre class="r"><code>Limb.Width&lt;-abs(Limb.Width);Limb.Width</code></pre>
-<pre><code>##  [1]  1.435623 12.668879 15.327728 13.579842  9.632099 13.807190 26.066152
-##  [8] 12.025408  5.998468  7.090361</code></pre>
+<pre><code>##  [1] 19.636665  1.339951  9.601492  3.900619  8.511429 11.598462  2.757632
+##  [8] 15.959411 16.707562 20.585995</code></pre>
 </div>
 <div id="create-a-reandom-vector-of-units-for-limb-width" class="section level4">
 <h4>Create a reandom vector of units for limb width</h4>
 <pre class="r"><code>unitsW&lt;-c(&quot;cm&quot;,&quot;mm&quot;)
 unitsW&lt;-sample(unitsW,10,replace=T,prob=c(0.5,0.5))
 unitsW</code></pre>
-<pre><code>##  [1] &quot;mm&quot; &quot;cm&quot; &quot;mm&quot; &quot;cm&quot; &quot;mm&quot; &quot;cm&quot; &quot;cm&quot; &quot;mm&quot; &quot;mm&quot; &quot;mm&quot;</code></pre>
+<pre><code>##  [1] &quot;mm&quot; &quot;mm&quot; &quot;cm&quot; &quot;mm&quot; &quot;mm&quot; &quot;cm&quot; &quot;mm&quot; &quot;cm&quot; &quot;mm&quot; &quot;cm&quot;</code></pre>
 </div>
 <div id="creat-a-vector-for-limb.length" class="section level4">
 <h4>Creat a vector for Limb.Length</h4>
 <pre class="r"><code>Limb.Length&lt;-rnorm(10,mean=100,sd=100);Limb.Length</code></pre>
-<pre><code>##  [1]  12.28422 113.83675  72.85501 117.97996 -48.93385 113.73892 -93.40885
-##  [8] 125.33574 191.97827 -48.63905</code></pre>
+<pre><code>##  [1]  204.23224  -35.84445  195.28734   77.51581 -102.83947  239.39763
+##  [7]   72.30048  173.01916   36.31875  183.60649</code></pre>
 </div>
 <div id="change-all-to-positive-values-1" class="section level4">
 <h4>Change all to positive values</h4>
 <pre class="r"><code>Limb.Length&lt;-abs(Limb.Length);Limb.Length</code></pre>
-<pre><code>##  [1]  12.28422 113.83675  72.85501 117.97996  48.93385 113.73892  93.40885
-##  [8] 125.33574 191.97827  48.63905</code></pre>
+<pre><code>##  [1] 204.23224  35.84445 195.28734  77.51581 102.83947 239.39763  72.30048
+##  [8] 173.01916  36.31875 183.60649</code></pre>
 </div>
 <div id="create-a-reandom-vector-of-units-for-limb-length" class="section level4">
 <h4>Create a reandom vector of units for limb length</h4>
 <pre class="r"><code>unitsL&lt;-c(&quot;cm&quot;,&quot;mm&quot;)
 unitsL&lt;-sample(unitsL,10,replace=T,prob=c(0.5,0.5))
 unitsL</code></pre>
-<pre><code>##  [1] &quot;cm&quot; &quot;cm&quot; &quot;mm&quot; &quot;mm&quot; &quot;mm&quot; &quot;mm&quot; &quot;mm&quot; &quot;cm&quot; &quot;cm&quot; &quot;cm&quot;</code></pre>
+<pre><code>##  [1] &quot;cm&quot; &quot;mm&quot; &quot;mm&quot; &quot;mm&quot; &quot;cm&quot; &quot;mm&quot; &quot;cm&quot; &quot;mm&quot; &quot;cm&quot; &quot;cm&quot;</code></pre>
 </div>
 <div id="combine-all-vectors-into-a-data-frame" class="section level4">
 <h4>Combine all vectors into a data frame</h4>
 <pre class="r"><code>MyData=data.frame(Species,Limb.Width,unitsW,Limb.Length,unitsL)
 MyData</code></pre>
 <pre><code>##                    Species Limb.Width unitsW Limb.Length unitsL
-## 1  Actinonaias ligamentina   1.435623     mm    12.28422     cm
-## 2    Alasmidonta marginata  12.668879     cm   113.83675     cm
-## 3     Cyclonaias pustulosa  15.327728     mm    72.85501     mm
-## 4     Epioblasma triquetra  13.579842     cm   117.97996     mm
-## 5    Pseudacris triseriata   9.632099     mm    48.93385     mm
-## 6      Pseudacris crucifer  13.807190     cm   113.73892     mm
-## 7    Lithobates sylvaticus  26.066152     cm    93.40885     mm
-## 8      Anaxyrus americanus  12.025408     mm   125.33574     cm
-## 9         Anaxyrus fowleri   5.998468     mm   191.97827     cm
-## 10      Lithobates pipiens   7.090361     mm    48.63905     cm</code></pre>
+## 1  Actinonaias ligamentina  19.636665     mm   204.23224     cm
+## 2    Alasmidonta marginata   1.339951     mm    35.84445     mm
+## 3     Cyclonaias pustulosa   9.601492     cm   195.28734     mm
+## 4     Epioblasma triquetra   3.900619     mm    77.51581     mm
+## 5    Pseudacris triseriata   8.511429     mm   102.83947     cm
+## 6      Pseudacris crucifer  11.598462     cm   239.39763     mm
+## 7    Lithobates sylvaticus   2.757632     mm    72.30048     cm
+## 8      Anaxyrus americanus  15.959411     cm   173.01916     mm
+## 9         Anaxyrus fowleri  16.707562     mm    36.31875     cm
+## 10      Lithobates pipiens  20.585995     cm   183.60649     cm</code></pre>
 </div>
-<div id="create-csv-for-part-2-of-assignment" class="section level4">
-<h4>Create csv for Part 2 of assignment</h4>
+<div id="create-csv-for-part-2-of-assignment-for-week-3" class="section level4">
+<h4>Create csv for Part 2 of assignment for week 3</h4>
 <pre class="r"><code>write.csv(MyData,&quot;Data\\measurments.csv&quot;, row.names = FALSE)</code></pre>
 </div>
 

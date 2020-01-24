@@ -9,22 +9,77 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+#Part 2 of Week three assignment
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+####Read in measurments.csv
+```{r}
+MData<-read.csv("Data\\Measurments.csv")
+head(MData)
+str(MData)
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+####Change columns names to shorter 3-letter abbreviations
+```{r}
+library(dplyr)
+MData<-MData %>% rename(Spc=Species,LbW=Limb.Width,UnW=unitsW,LbL=Limb.Length,UnL=unitsL)
+head(MData)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+####Add a Volume column
+#####But first convert the units so that they are all the same
+```{r}
+MData<-MData %>% mutate(LbW = ifelse(UnW=="mm",LbW*0.1,LbW),LbL = ifelse(UnL=="mm",LbL*0.1,LbL),UnW = replace(UnW, UnW=="mm", "cm"),UnL = replace(UnL, UnL=="mm", "cm"))
+MData
+
+```
+
+#####Add volume column
+```{r}
+MData<-MData %>% mutate(Vol=(pi*((LbW/2)^2))*LbL)
+head(MData)
+```
+
+####Add columns for groups
+
+```{r}
+MData
+Class<-c(rep(c("Bivalve"),4),rep(c("Amphibian"),6))
+MData<-cbind(MData,Class);MData
+```
+####Summarize mean and sd of each group
+```{r}
+SumDat<-MData %>% group_by(Class) %>% summarize(MeanVol=mean(Vol),SDVol=sd(Vol),MeanWidth=mean(LbW),SDWidth=sd(LbW),MeanLength=mean(LbL),SDLength=sd(LbL))
+SumDat
+```
+####Plot Width and length
+```{r}
+library(ggplot2)
+qplot(LbW, LbL, data = MData,xlab="Width (cm)",ylab="Length (cm)", 
+      main= "Mussel and amphibian limb length and width",alpha=I(0.5), shape=I(18),colour=Class, size=I(5))+
+    scale_colour_manual(values=c("seagreen","steelblue"))+
+    labs(colour= "Class")+
+  theme_classic()
+```
+
+####Plot only those that are above average volume
+
+```{r}
+summarize(MData,MeanVol=mean(Vol))
+```
+```{r}
+AboveAv<-MData %>% filter(Vol>1846.532)
+qplot(LbW, LbL, data = AboveAv,xlab="Width (cm)",ylab="Length (cm)", 
+      main= "Above average mussel and amphibian limb length and width",alpha=I(0.5), shape=I(19),colour=Class, size=I(5))+
+    scale_colour_manual(values=c("forestgreen","navy"))+
+    labs(colour= "Class")+
+  theme_classic()
+```
+
+# Add a able of the above average volume individuals
+
+Species | Class | Limb Width (cm) | Limb Length (cm) | Volume (cm^3)
+-----------|--------|-----|-----|-----
+Epioblasma triquetra | Bivalve | 5.597 |	91.13 | 2242
+Pseudacris triseriata | Amphibian |	7.388	| 127.0	|	5446
+Anaxyrus americanus	| Amphibian | 10.53	|	91.02	|	7932
+Lithobates pipiens | Amphibian |	5.465 | 110.3	|	2588

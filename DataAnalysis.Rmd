@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #Part 2 of Week three assignment
 
-####Read in measurments.csv
+####Read in measurments.csv that was created in part 1 of assignment for week 3
 ```{r}
 MData<-read.csv("Data\\Measurments.csv")
 head(MData)

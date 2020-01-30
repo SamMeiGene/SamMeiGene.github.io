@@ -1,0 +1,27 @@
+---
+title: "Regex"
+author: "Sam Gene"
+date: "January 29, 2020"
+output: html_document
+---
+
+```{r}
+MData<-read.csv("Data/measurments.csv")
+head(MData)
+library(dplyr)
+```
+
+Add new column Sp
+```{r}
+MData<-MData %>% mutate(Sp = gsub("(\\w)(\\w+)(\\W)","\\1\\. ",Species))
+MData
+```
+
+
+New dataset with Sp at front and Species removed
+```{r}
+NewData<-MData %>% select(Sp,everything(),-Species)
+NewData
+```
+
+
